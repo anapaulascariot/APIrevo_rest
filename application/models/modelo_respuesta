@@ -1,0 +1,10 @@
+<?php
+
+class Modelo_respuesta extends CI_Model {
+
+	public function guardarpregunta($objeto) {
+		$this->db->insert('usuario', $objeto);
+		return 0;
+	}
+
+}
