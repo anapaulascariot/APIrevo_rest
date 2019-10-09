@@ -18,7 +18,7 @@ class Login extends CI_Controller {
 		// this - el modelo que tengo - el método del modelo
 
 		//echo json_encode($var);
-		redirect('Vista/respuesta');
+		redirect('Vistas/respuesta');
 	}
 
 
