@@ -15,6 +15,7 @@ class Vistas extends CI_Controller {
 
 	public function respuesta() {
 		$this->load->view('respuesta');
+		//respuesta
 	}
 
 

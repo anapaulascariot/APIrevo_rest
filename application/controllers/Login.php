@@ -18,7 +18,11 @@ class Login extends CI_Controller {
 		// this - el modelo que tengo - el método del modelo
 
 		//echo json_encode($var);
-		redirect('Vistas/respuesta');
+		if ($var) {
+			redirect('Vistas/respuesta');
+		} else {
+			echo "Usuario o contrasena invalidos.";
+		}
 	}
 
 
