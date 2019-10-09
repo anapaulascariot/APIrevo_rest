@@ -11,22 +11,10 @@ class Respuesta extends CI_Controller {
 	}
 
 	public function index() {
-		$idpregunta = $this->input->post('id')
-		$pregunta = $this->input->post('pregunta');
-		$voto = $this->input->post('voto');
-		// this - el modelo que tengo - el método del modelo
-		$arreglo = array(
-			'id_pregunta' => $idpregunta
-			'pregunta' 	=> $pregunta,
-			'voto' => $voto
-		); /
-
+		$idpregunta = $this->input->post('id');
+		$var = $this->Modelo_respuesta->guardarPregunta($idpregunta);
 		echo json_encode($var);
 	}
 
-
-	// $id, $nombre, $apellido, $email, $contrasena
-
-
 }
-}
+
