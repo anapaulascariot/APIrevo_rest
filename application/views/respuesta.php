@@ -8,13 +8,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>  
-<body> 
+<body>
     <div class="container">
         <div class="text-center">
             <div class="jumbotron">
                 <h1>¡Bienvenido!</h1>
                 <h2>Responde la siguiente pregunta</h2>
-            </div>
+    </div>
             <div class="card bg-info text-white">
                 <div class="card-body">
                     <div class="col-md-12 col-md-offset-7">
@@ -24,26 +24,24 @@
                                 <div id="formContent">
                                    <legend class="col-sm-12">¿Cómo calificarías el clima en Xalapa Veracruz?</legend>   
                                    <p></p>
-                                      
-                                  echo "<div class='form-check'>";
-                                  echo "<input class='form-check-input' type='radio'";
-                                  //se especifica que radiobutton es
-                                  echo "name='gridRadios' id='gridRadios".$i."'";
-                                  echo "value='"; 
-                                  echo $preguntayrespuesta[($i+1)];//la id de la respuesta para poder actualizarla
-                                  echo "'";
-                                   
-                                 echo " checked>";
-                                  
-                                  echo $preguntayrespuesta[($i+2)]; //lo que verá el usuario
-                                echo "</label>";
-                                echo "</div>";
-                               $i=$i+1;
-                                 }
-
-                                ?>  
-                                
-                                
+                                   <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                    <label class="form-check-label" for="gridRadios1">
+                                        Bueno
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2" checked>
+                                    <label class="form-check-label" for="gridRadios2">
+                                        Regular
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" checked>
+                                    <label class="form-check-label" for="gridRadios3">
+                                        Malo
+                                    </label>
+                                </div>
                                 <p></p>
                                 <div>
                                     <div class="col-md-12 col-md-offset-7">
