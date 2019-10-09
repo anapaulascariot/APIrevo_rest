@@ -2,11 +2,11 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Api extends CI_Controller {
+class Registro extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('Modelo_api');
+		$this->load->model('Modelo_registro');
 		// poner aqui, porque sino todas las funciones individuales tienen que llamar el modelo
 	}
 
