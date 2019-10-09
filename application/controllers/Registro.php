@@ -22,7 +22,7 @@ class Registro extends CI_Controller {
 			'nombre' 	=> $nombre,
 			'apellido' => $apellido,
 			'email' => $email,
-			'contrasena' => $contrasena
+			'contrasena' => md5($contrasena)
 		); // nombre del campo de la base de datos y los datos que recibo por post, para despues enviar al registro en bd
 
 		$this->Modelo_registro->guardarUsuario($arreglo);
