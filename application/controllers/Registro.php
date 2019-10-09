@@ -25,7 +25,7 @@ class Registro extends CI_Controller {
 			'contrasena' => $contrasena
 		); // nombre del campo de la base de datos y los datos que recibo por post, para despues enviar al registro en bd
 
-		$this->Modelo_api->guardarUsuario($arreglo);
+		$this->Modelo_registro->guardarUsuario($arreglo);
 		// this - el modelo que tengo - el método del modelo
 	}
 

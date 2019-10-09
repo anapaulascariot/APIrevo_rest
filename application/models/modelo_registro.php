@@ -1,6 +1,6 @@
 <?php
 
-class Modelo_api extends CI_Model {
+class Modelo_registro extends CI_Model {
 
 	public function guardarUsuario($objeto) {
 		$this->db->insert('usuario', $objeto);
