@@ -13,8 +13,9 @@ class Vistas extends CI_Controller {
 		$this->load->view('login');
 	}
 
-
-	// $id, $nombre, $apellido, $email, $contrasena
+	public function respuesta() {
+		$this->load->view('respuesta');
+	}
 
 
 }
