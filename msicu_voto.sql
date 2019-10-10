@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 09-10-2019 a las 18:12:35
+-- Tiempo de generación: 10-10-2019 a las 00:08:38
 -- Versión del servidor: 5.7.26
 -- Versión de PHP: 7.2.18
 
@@ -53,14 +53,14 @@ INSERT INTO `respuesta` (`idpregunta`, `pregunta`, `voto`) VALUES
 
 DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
-  `id_usuario` int(10) NOT NULL,
+  `id_usuario` int(10) NOT NULL AUTO_INCREMENT,
   `email` varchar(100) DEFAULT NULL,
   `contrasena` varchar(100) DEFAULT NULL,
   `nombre` varchar(100) DEFAULT NULL,
   `apellido` varchar(100) DEFAULT NULL,
   `voto` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
