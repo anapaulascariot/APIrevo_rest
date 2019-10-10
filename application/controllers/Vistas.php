@@ -1,7 +1,7 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+/**-------controlador de vistas----**/
 class Vistas extends CI_Controller {
 
 	public function __construct() {
