@@ -1,7 +1,7 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+/*---------------controlador del modelo respuesta-----*/
 class Respuesta extends CI_Controller {
 
 	public function __construct() {
