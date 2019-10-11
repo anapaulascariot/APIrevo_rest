@@ -19,7 +19,7 @@ class Login extends CI_Controller {
 
 		//echo json_encode($var);
 		if ($var) {
-			redirect('Vistas/respuesta');
+			$this->load->view('Vistas/respuesta');
 		} else {
 			echo "Usuario o contrasena invalidos.";
 		}
