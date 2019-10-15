@@ -14,12 +14,13 @@ class Login extends CI_Controller {
 		$email = $this->input->post('email');
 		$contrasena = $this->input->post('contrasena');
 
+
 		$var = $this->Modelo_login->realizarLogin($email, $contrasena);
 		// this - el modelo que tengo - el método del modelo
 
 		//echo json_encode($var);
 		if ($var) {
-			$this->load->view('Vistas/respuesta');
+			$this->load->view('respuesta');
 		} else {
 			echo "Usuario o contrasena invalidos.";
 		}

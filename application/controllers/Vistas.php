@@ -18,5 +18,8 @@ class Vistas extends CI_Controller {
 		//respuesta
 	}
 
+	public function registro_usuario() {
+		$this->load->view('registro');
+	}
 
 }

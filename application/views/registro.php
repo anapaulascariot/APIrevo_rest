@@ -27,17 +27,17 @@
 
                 $opts_mail =  array('placeholder' => 'Email', 'class' => 'fadeIn second', 'type' => 'mail');
             //echo "<p>Username:";  
-                echo form_input('email', '', $opts_user);  
+                echo form_input('email', '', $opts_mail);  
                 echo "</p>"; 
 
                 $opts_nom =  array('placeholder' => 'Nombre', 'class' => 'fadeIn second', 'type' => 'text');
             //echo "<p>Username:";  
-                echo form_input('nombre', '', $opts_user);  
+                echo form_input('nombre', '', $opts_nom);  
                 echo "</p>";  
 
                 $opts_apel =  array('placeholder' => 'Apellido', 'class' => 'fadeIn second', 'type' => 'text');
             //echo "<p>Username:";  
-                echo form_input('apellido', '', $opts_user);  
+                echo form_input('apellido', '', $opts_apel);  
                 echo "</p>";   
 
             //echo "<p>Password:";  

@@ -142,7 +142,9 @@ input[type=text]:placeholder, input[type=password]:placeholder, input[type=email
   color: #cccccc;
 }
 
-
+input.invalid{
+  border-color: #900;
+}
 
 /* ANIMATIONS */
 

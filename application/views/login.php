@@ -20,17 +20,17 @@
 
                 <div class="fadeIn second">
                     <!--Email-->
-                    <input type="email" id="email" name="email" placeholder="Email">
+                    <input type="email" id="email" required name="email" placeholder="Email">
                 </div>
                 <div class="fadeIn third">
                     <!--Contrasena-->
-                    <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
+                    <input type="password" id="contrasena" required name="contrasena" placeholder="Contraseña">
                 </div>
                 <!--Realizar login-->
-                </p><input type="submit" class="fadeIn Fourth">
+                </p><input type="submit" class="fadeIn Fourth" id="login">
 
                 <div id="formFooter">   
-                    <a class="underlineHover" href='registro'>Registrarse</a>  
+                    <a class="underlineHover" href="<?php echo site_url('Vistas/registro_usuario') ?>">Registrarse</a> 
                 </div>
             </div>
         </div>     
@@ -38,4 +38,5 @@
     </form>
 </body>  
 <script type="text/javascript" src="http://localhost/APIrevo_rest/assets/js/bootstrap.js"></script>
+<!--script type="text/javascript" src="http://localhost/APIrevo_rest/assets/js/validar_login.js"></script-->
 </html>    
