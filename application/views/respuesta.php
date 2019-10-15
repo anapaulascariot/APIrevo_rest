@@ -59,17 +59,17 @@
 
 <script type="text/javascript">
       $(document).ready(function(){
-        $("votar").click(function(){
+        $("#enviarVoto").click(function(){
             var radioValue = $("input[name='gridRadios']:checked").val();
             if(radioValue){
                 $.ajax({
-                  url: 'index.php/Webservice/guardaVotacion',
+                  url: 'index.php/Servicios_Web/Respuestaservice',
                   type: 'post',
                   dataType: 'json',
                   data: {'valor_de_voto': radioValue},
                 })
-                .done(function(data) {
-                 /* if (data.pasa) {
+                /*.done(function(data) {
+                  if (data.pasa) {
                     $('#modalConfirma').modal('hide');
                     $('#modalOK').modal();
                   }else{
@@ -97,8 +97,8 @@
 
         $("#cerrar1").click(function(){
               $("#modalError").hide();
-        });
-*/
+        });*/
+
     });
 </script>
 
