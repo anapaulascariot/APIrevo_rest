@@ -28,31 +28,31 @@
                 $opts_mail =  array('placeholder' => 'Email', 'class' => 'fadeIn second', 'type' => 'mail');
             //echo "<p>Username:";  
                 echo form_input('email', '', $opts_mail);  
-                echo "</p>"; 
+                //echo "</p>"; 
 
                 $opts_nom =  array('placeholder' => 'Nombre', 'class' => 'fadeIn second', 'type' => 'text');
             //echo "<p>Username:";  
                 echo form_input('nombre', '', $opts_nom);  
-                echo "</p>";  
+                //echo "</p>";  
 
                 $opts_apel =  array('placeholder' => 'Apellido', 'class' => 'fadeIn second', 'type' => 'text');
             //echo "<p>Username:";  
                 echo form_input('apellido', '', $opts_apel);  
-                echo "</p>";   
+                //echo "</p>";   
 
             //echo "<p>Password:";  
                 $opts_pass = array('placeholder'=>'Contraseña', 'class'=>'fadeIn third', 'type' => 'password');
                 echo form_password('contrasena', '', $opts_pass);  
-                echo "</p>";  
+                //echo "</p>";  
 
             //echo "<p>Confirm Password:";  
                 $opts_confirmpass = array('placeholder'=>'Confirme Contraseña', 'class'=>'fadeIn Fourth', 'type' => 'password');
                 echo form_password('cpassword', '', $opts_confirmpass);  
                 echo "</p>";  
 
-                echo "<p>";  
+                //echo "<p>";  
                 echo form_submit('signin_submit', 'Registrar', 'class=fadeIn Fifth');  
-                echo "</p>";  
+                //echo "</p>";  
 
                 echo form_close();  
 
