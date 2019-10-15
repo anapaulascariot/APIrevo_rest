@@ -7,4 +7,11 @@ class Modelo_registro extends CI_Model {
 		return 0;
 	}
 
+	function checarExistencia($email){
+    	$this->db->select('nombre,apellido,email,contrasena');
+    	$this->db->where('email', $email); 
+    	$this->db->from('usuario');
+    	return $this->db->count_all_results();
+    }
+
 }

@@ -3,10 +3,9 @@
 <head>  
     <meta charset="utf-8">  
     <title>Nuevo Usuario</title>  
-    <script type="text/javascript" src="http://localhost/apirevo/js/bootstrap.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://localhost/apirevo/css/bootstrap.css"></link>
-    <link rel="stylesheet" type="text/css" href="http://localhost/apirevo/css/bootstrap.min.css"></link>
-    <link rel="stylesheet" type="text/css" href="http://localhost/apirevo/css/formato.css"></link>
+    <link rel="stylesheet" type="text/css" href="http://localhost/APIrevo_rest/assets/css/formato.css"></link>
+    <link rel="stylesheet" type="text/css" href="http://localhost/APIrevo_rest/assets/css/bootstrap.css"></link>
+    <link rel="stylesheet" type="text/css" href="http://localhost/APIrevo_rest/assets/css/bootstrap.min.css"></link>
 </head>  
 <body>  
     <div class="container">
@@ -19,47 +18,33 @@
                     </p>
                 </div>
 
-                <?php  
-
-                echo form_open('Registro/signin_validation');  
-
-                echo validation_errors();  
-
-                $opts_mail =  array('placeholder' => 'Email', 'class' => 'fadeIn second', 'type' => 'mail');
-            //echo "<p>Username:";  
-                echo form_input('email', '', $opts_mail);  
-                //echo "</p>"; 
-
-                $opts_nom =  array('placeholder' => 'Nombre', 'class' => 'fadeIn second', 'type' => 'text');
-            //echo "<p>Username:";  
-                echo form_input('nombre', '', $opts_nom);  
-                //echo "</p>";  
-
-                $opts_apel =  array('placeholder' => 'Apellido', 'class' => 'fadeIn second', 'type' => 'text');
-            //echo "<p>Username:";  
-                echo form_input('apellido', '', $opts_apel);  
-                //echo "</p>";   
-
-            //echo "<p>Password:";  
-                $opts_pass = array('placeholder'=>'Contraseña', 'class'=>'fadeIn third', 'type' => 'password');
-                echo form_password('contrasena', '', $opts_pass);  
-                //echo "</p>";  
-
-            //echo "<p>Confirm Password:";  
-                $opts_confirmpass = array('placeholder'=>'Confirme Contraseña', 'class'=>'fadeIn Fourth', 'type' => 'password');
-                echo form_password('cpassword', '', $opts_confirmpass);  
-                echo "</p>";  
-
-                //echo "<p>";  
-                echo form_submit('signin_submit', 'Registrar', 'class=fadeIn Fifth');  
-                //echo "</p>";  
-
-                echo form_close();  
-
-                ?>  
+                <div class="fadeIn second">
+                    <!--Email-->
+                    <input type="email" id="email" required name="email" placeholder="Email">
+                </div>
+                <div class="fadeIn second">
+                    <!--Nombre-->
+                    <input type="text" id="nombre" required name="nombre" placeholder="Nombre">
+                </div>
+                <div class="fadeIn second">
+                    <!--Nombre-->
+                    <input type="text" id="apellido" required name="apellido" placeholder="Apellido">
+                </div>
+                <div class="fadeIn second">
+                    <!--Contrasena-->
+                    <input type="password" id="contrasena" required name="contrasena" placeholder="Contraseña">
+                </div>
+                <div class="fadeIn second">
+                    <!--Contrasena-->
+                    <input type="password" id="confirmar_contrasena" required name="confirmar_contrasena" placeholder="Confirme Contraseña">
+                </div>
+                <!--Realizar Registro-->
+                </p><input type="submit" class="fadeIn third" id="registro_user">
             </form>
             </div>
         </div>
     </div>  
 </body>  
+<script type="text/javascript" src="http://localhost/apirevo_rest/assets/js/bootstrap.js"></script>
+<script type="text/javascript" src="http://localhost/APIrevo_rest/assets/js/validar_registro.js"></script>
 </html>  

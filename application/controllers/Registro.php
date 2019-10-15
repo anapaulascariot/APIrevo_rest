@@ -25,11 +25,25 @@ class Registro extends CI_Controller {
 			'contrasena' => md5($contrasena)
 		); // nombre del campo de la base de datos y los datos que recibo por post, para despues enviar al registro en bd
 
-		$this->Modelo_registro->guardarUsuario($arreglo);
-		// this - el modelo que tengo - el método del modelo
+		$existe = $this->Modelo_registro->checarExistencia($email);
+
+		if($existe > 0) {
+			echo json_encode("Ya existe un usuario registrado con este email.");
+		} else {
+			$registrado = $this->Modelo_registro->guardarUsuario($arreglo);
+			// this - el modelo que tengo - el método del modelo
+			if(!$registrado) {
+				$this->load->view('respuesta');
+			} else {
+				echo json_encode("Tuvimos un problema al registrar usuario. Intentalo nuevamente, por favor.");
+			}
+
+		}
 	}
 
-	public function signin_validation()  
+
+
+/*	public function signin_validation()  
     {  
         $this->load->library('form_validation');  
   
@@ -49,7 +63,7 @@ class Registro extends CI_Controller {
               
             $this->load->view('signin');  
         }  
-    }
+    }*/
 
 
 	// $id, $nombre, $apellido, $email, $contrasena
