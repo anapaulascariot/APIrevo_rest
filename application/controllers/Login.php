@@ -22,7 +22,8 @@ class Login extends CI_Controller {
 		if ($var) {
 			$this->load->view('respuesta');
 		} else {
-			echo "Usuario o contrasena invalidos.";
+			echo "<script> alert('Usuario o contraseña invalidos.'); </script>";
+			$this->load->view('login');
 		}
 	}
 
