@@ -23,8 +23,6 @@ class Respuesta_service extends CI_Controller {
     public function guardaVoto(){
         header("Content-Type:application/json");
         header('Access-Control-Allow-Origin: *');
-
-         //$id_usuario = $this->session->userdata("id");
          $valor = $this->input->post("voto");
          $id_usuario = $this->input->post("id");
 

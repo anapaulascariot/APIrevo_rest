@@ -105,14 +105,14 @@
       </div>
     </div>
   </div>
-</div>-->
+</div>
 <!--..-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<!--<script src="<?php echo $this->config->item('base_url')?>/assets/js/Chart.min.js"></script>-->
+<script src="<?php echo $this->config->item('base_url')?>/assets/js/Chart.min.js"></script>
 <script src="<?php echo $this->config->item('base_url')?>/assets/js/graficas.js"></script>
-<!--<script src="http://localhost:8082/socket.io/socket.io.js"></script>-->
+<script src="http://localhost:8082/socket.io/socket.io.js"></script>
 
 <script type="text/javascript">
       $(document).ready(function(){
@@ -121,12 +121,12 @@
             var radioValue = $("input[name='optradio']:checked").val();
             if(radioValue){
                 $.ajax({
-                  url: './ServiciosWeb/Respuesta_service',
+                  url: './Servicios_Web/Respuesta_service',
                   type: 'post',
                   dataType: 'json',
                   data: {'voto': radioValue, 'id': 1},
                 })
-                .done(function(data) {
+                /*.done(function(data) {
                   if (data.pasa) {
                     socket.emit("revoto");
                     socket.on('exito', function () {
@@ -137,7 +137,7 @@
                           dataType: 'json',
                         })
                        /*falta modificar creacion de las graficas*/
-                        .done(function(data) {
+                        /*.done(function(data) {
                           var ctx = document.getElementById("graficaVotos").getContext('2d');
                           $("#graficaVotos").remove();
                           $("#CanvasVotos").append('<canvas style="margin: 20px;" id="graficaVotos"></canvas>');
@@ -182,7 +182,7 @@
                         .fail(function(data) {
                           console.log(data);
                         });
-                    });  
+                    });  */
                   }else{
                     $('#modalConfirma').modal('hide');
                     $('#modalError').modal();
@@ -193,20 +193,20 @@
                   $('#modalError').modal();
                 });
             }else{
-                $('#miModalVacioBoton').modal();
+                $('#siesVacio').modal();
             }
         });
 
-        $("#cerrar1").click(function(){
-              $("#miModalVacioBoton").hide();
+        $("#Salir").click(function(){
+              $("#siesVacio").hide();
         });
 
-        $("#cerrar2").click(function(){
-              $("#modalOK").hide();
+        $("#Salir2").click(function(){
+              $("#VotoGuardado").hide();
               //window.location.replace("index.php/Graficas");
         });
 
-        $("#cerrar1").click(function(){
+        $("#Salir").click(function(){
               $("#modalError").hide();
         });
 

@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>
   var socket = io.connect('http://localhost:8082');
   var ctx = document.getElementById("graficaVotos").getContext('2d');
-    socket.on("ok", function(){
+    socket.on("exito", function(){
         //codigo que se vera en elnavegador https://socket.io/docs/
         alert("todo ok");
        location.reload();
@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
     window.addEventListener("load", function(){
         
-        var button = document.getElementById("botngrita");
+        var button = document.getElementById("socket");
         button.addEventListener("click", function(){
             socket.emit("revoto");
         });
