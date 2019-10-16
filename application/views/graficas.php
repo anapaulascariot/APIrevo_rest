@@ -1,4 +1,3 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
@@ -15,18 +14,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="wrapper fadeInDown">
         <div class="fadeIn first">
           <h1>Gráficas de Votos</h1>
-          <div id="body">
-		      <div>
-			<h1 id="textoRegistrados"></h1>
-			<canvas id="graficaVotos"></canvas>
-		</div>
-	</div>
-  <div class="col-md-1 col-md-offset-7">
-                <button type="button" type="button" class="btn btn-danger" onclick="window.location.href='<?php echo base_url("index.php/");?>'">Salir</button>
-                <p></p>
+            <div class="text-center">
+              <div class="card bg-info text-white">
+                <div id="body">
+                  <!--..-->
+    		      <div>
+                <h1 id="textoRegistrados"></h1>
+                <canvas id="graficaRespuestas"></canvas>
               </div>
-<!-- <button id="botngrita">votar</button>-->
-</div>
+            </div>
+            <div class="col-md-1 col-md-offset-7">
+              <button type="button" type="button" class="btn btn-danger" onclick="window.location.href='<?php echo base_url("index.php/");?>'">Salir</button>
+            </div>
+            <!--.Boton que hara.-->
+            <div class="col-md-1 col-md-offset-7">
+              <button type="btn-success" class="btn btn-success" id="socket">votar</button>
+            </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="<?php echo $this->config->item('base_url')?>/assets/js/Chart.min.js"></script>
 <script src="<?php echo $this->config->item('base_url')?>/assets/js/graficas.js"></script>
@@ -45,13 +48,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
         var button = document.getElementById("botngrita");
         button.addEventListener("click", function(){
-          //  alert("hola :3");
             socket.emit("revoto");
         });
     });
-    
 </script>
-
-
 </body>
 </html>

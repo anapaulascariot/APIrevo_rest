@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Votacionservice extends CI_Controller {
+class Respuesta_service extends CI_Controller {
     
     public function __construct(){
         parent::__construct();
         $this->load->model('Modelo_respuesta');
-    }//fin constructor
+    }
     
     public function index(){
         switch ($this->input->server('REQUEST_METHOD')) {
@@ -19,14 +19,13 @@ class Votacionservice extends CI_Controller {
         }
     }
 
-
     //manda el voto del usuario
     public function guardaVoto(){
         header("Content-Type:application/json");
         header('Access-Control-Allow-Origin: *');
 
          //$id_usuario = $this->session->userdata("id");
-         $valor = $this->input->post("valor_de_voto");
+         $valor = $this->input->post("voto");
          $id_usuario = $this->input->post("id");
 
          $datos = array(
@@ -39,8 +38,8 @@ class Votacionservice extends CI_Controller {
             $data['estatus']     = 'ERROR';
             $data['mensaje']     = 'Ya has votado anteriormente';
          }else{
-             $data['estatus']     = 'OK';
-             $data['mensaje']     = 'Voto registrado correctamente';
+             $data['estatus']     = 'Exito';
+             $data['mensaje']     = 'Voto registrado ';
              $dato = $this->Webservice_model->guardaVoto($datos);
              if ($dato) {
                     echo json_encode(["pasa" => true]);
@@ -48,7 +47,6 @@ class Votacionservice extends CI_Controller {
                     echo json_encode(["pasa" => false]);
                 }
          }
-        //echo json_encode($data);
     }
 
     

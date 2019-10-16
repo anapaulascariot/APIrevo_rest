@@ -37,10 +37,11 @@
                 </label>
             </div>
             <p></p>
-            <!--<div id="CanvasVotos">
+            <!--.Aqui va a dibujar los graficos.-->
+            <div id="CanvasRespuesta">
               <h1 id="textoRegistrados"></h1>
-              <canvas style="margin: 20px;" id="graficaVotos"></canvas>
-            </div>-->
+              <canvas style="margin: 20px;" id="graficaRespuestas"></canvas>
+            </div>
             <div class="row">
               <div class="col-md-12 col-md-offset-7">
                 <button type="btn-success" class="btn btn-success" id='votar'>Votar</button>
@@ -56,81 +57,132 @@
     </div>
   </div>
 </body>
-    <!-- modal para verificar botón elegido -->
-    <div class="modal" id="miModalVacioBoton">
+<!--.Creacion de los modales ventanas de validaciones y mensjs.-->
+    <!-- modal seleccion de voto-->
+    <div class="modal" id="siesVacio">
       <div class="modal-dialog">
         <div class="modal-content">
-          <!-- Modal Header -->
           <div class="modal-header bg-danger text-white">
-            <h4 class="modal-title">¡Advertencia!</h4>
+            <h4 class="modal-title">¡Alerta!</h4>
           </div>
-          <!-- Modal body -->
           <div class="modal-body">
-            Debes elegir un valor para la votación
+            Selecciona una Opción
           </div>
-          Modal footer
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" id="cerrar1" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-danger" id="Salir" data-dismiss="modal">Salir</button>
           </div>
         </div>
       </div>
     </div>
-
-<div id="modalOK" class="modal fade" role="dialog">
+  <!-- modal Guardado-->
+<div id="VotoGuardado" class="modal fade" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header bg-primary text-white">
         <h5 class="modal-title">Información</h5>
       </div>
       <div class="modal-body">
-        <h4>Datos guardados correctamente</h4>
+        <h4>¡El voto ha sido guardado con exito!</h4>
       </div>
       <div class="modal-footer">
-        <button id="cerrar2" type="button" class="btn btn-danger" data-dismiss="modal">Ir a ver las gráficas de voto</button>
+        <button id="verGraficas" type="btn-success" class="btn btn-success" data-dismiss="modal">Ver gráficas de votos</button>
       </div>
     </div>
   </div>
 </div>
-
+  <!-- modal Error-->
 <div id="modalError" class="modal fade" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title">Información</h5>
+        <h5 class="modal-title">¡Alerta!</h5>
       </div>
       <div class="modal-body">
-        <h4>No ha sido posible guardar tu voto o ya ha votado antes</h4>
+        <h4>¡Error al votar!, Vuelve a intentar o quiza ya votaste!</h4>
       </div>
       <div class="modal-footer">
-        <button id="cerrar3" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-danger" id="Salir2" data-dismiss="modal">Salir</button>
       </div>
     </div>
   </div>
-</div>
-
-
-
-
-
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</div>-->
+<!--..-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<!--<script src="<?php echo $this->config->item('base_url')?>/assets/js/Chart.min.js"></script>-->
+<script src="<?php echo $this->config->item('base_url')?>/assets/js/graficas.js"></script>
+<!--<script src="http://localhost:8082/socket.io/socket.io.js"></script>-->
 
 <script type="text/javascript">
       $(document).ready(function(){
+        var socket = io.connect('http://localhost:8082');
         $("#votar").click(function(){
-            var radioValue = $("input[name='gridRadios']:checked").val();
+            var radioValue = $("input[name='optradio']:checked").val();
             if(radioValue){
                 $.ajax({
-                  url: 'index.php/Servicios_Web/Respuestaservice',
+                  url: './ServiciosWeb/Respuesta_service',
                   type: 'post',
                   dataType: 'json',
-                  data: {'valor_de_voto': radioValue},
+                  data: {'voto': radioValue, 'id': 1},
                 })
-                /*.done(function(data) {
+                .done(function(data) {
                   if (data.pasa) {
-                    $('#modalConfirma').modal('hide');
-                    $('#modalOK').modal();
+                    socket.emit("revoto");
+                    socket.on('exito', function () {
+                       console.log("Si llegó al OK");
+                       $.ajax({
+                          url: './index.php/Servicios_Web/Graficas_service',
+                          type: 'GET',
+                          dataType: 'json',
+                        })
+                       /*falta modificar creacion de las graficas*/
+                        .done(function(data) {
+                          var ctx = document.getElementById("graficaVotos").getContext('2d');
+                          $("#graficaVotos").remove();
+                          $("#CanvasVotos").append('<canvas style="margin: 20px;" id="graficaVotos"></canvas>');
+                          var ctx = document.getElementById("graficaVotos").getContext('2d');
+
+                          var colores = ["#c2c2c2","#DAF7A6", "#FFC300","#FF5733","#82e0aa","#a569bd","#5d6d7e","#17202a","#e59866"]
+                          var nombres = [];
+                          var totales = [];
+                          var coloresGrafica = [];
+                          if (data.registrodevotos.length > 0) {
+                            $.each(data.registrodevotos, function(index, val) {
+                              nombres.push(val.nombre);
+                              totales.push(val.valor);
+                              coloresGrafica.push(colores[index]);
+                            });
+                            var myChart = new Chart(ctx, {
+                              type: 'bar',
+                              data: {
+                                labels: nombres,
+                                datasets: [{
+                                  label: 'Total de votos',
+                                  data: totales,
+                                  backgroundColor: coloresGrafica,
+                                  borderColor: [],
+                                  borderWidth: 1
+                                }]
+                              },
+                              options: {
+                                scales: {
+                                  yAxes: [{
+                                    ticks: {
+                                      beginAtZero:true
+                                    }
+                                  }]
+                                }
+                              }
+                            });
+                          }else{
+                            $("#textoRegistrados").html("No hay registros");
+                          }
+                        })
+                        .fail(function(data) {
+                          console.log(data);
+                        });
+                    });  
                   }else{
                     $('#modalConfirma').modal('hide');
                     $('#modalError').modal();
@@ -141,7 +193,7 @@
                   $('#modalError').modal();
                 });
             }else{
-                $('#miModalVacioBoton').show();
+                $('#miModalVacioBoton').modal();
             }
         });
 
@@ -151,12 +203,12 @@
 
         $("#cerrar2").click(function(){
               $("#modalOK").hide();
-              window.location.replace("index.php/Graficas");
+              //window.location.replace("index.php/Graficas");
         });
 
         $("#cerrar1").click(function(){
               $("#modalError").hide();
-        });*/
+        });
 
     });
 </script>
