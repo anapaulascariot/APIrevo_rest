@@ -5,22 +5,23 @@ class Votacionservice extends CI_Controller {
     
     public function __construct(){
         parent::__construct();
-        $this->load->model('Webservice_model');
+        $this->load->model('Modelo_respuesta');
     }//fin constructor
     
     public function index(){
         switch ($this->input->server('REQUEST_METHOD')) {
             case 'POST':
-                $this->guardaVotacion();
+                $this->guardaVoto();
                 break;
             default:
                 break;
+                
         }
     }
 
 
     //manda el voto del usuario
-    public function guardaVotacion(){
+    public function guardaVoto(){
         header("Content-Type:application/json");
         header('Access-Control-Allow-Origin: *');
 

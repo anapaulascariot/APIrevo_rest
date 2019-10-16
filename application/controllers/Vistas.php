@@ -22,4 +22,8 @@ class Vistas extends CI_Controller {
 		$this->load->view('registro');
 	}
 
+	public function graficas() {
+		$this->load->view('graficas');
+	}
+
 }
