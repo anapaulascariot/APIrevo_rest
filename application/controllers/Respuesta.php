@@ -4,8 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /*---------------controlador del modelo respuesta-----*/
 class Respuesta extends CI_Controller {
 
+	 public $respuestas;
+
 	public function __construct() {
 		parent::__construct();
+		$this->load->model('Modelo_respuesta');
+
+
+      $this->respuestas = new Modelo_respuesta;
 	}
 
 	public function index() {
@@ -35,7 +41,8 @@ class Respuesta extends CI_Controller {
     } 
 
 
-     public function votar($id)//la id realmente no hace nada aquí excepto para mostrar la gráfica al final
+     public function votar()
+     //Recibiría una id pero, la id realmente no hace nada aquí excepto para mostrar la gráfica al final
 
     {
 
@@ -49,9 +56,9 @@ class Respuesta extends CI_Controller {
 
         }else{ }//Validación, dentro del else se pone la ejecución si pasa la validación
         */
-          $this->preguntas->update_respuesta();
+          $this->respuestas->update_respuesta();
 
-          redirect(base_url('index.php/Main/charts/'.$id));
+          redirect(base_url('index.php/Vistas/graficas/'));
 
         
 

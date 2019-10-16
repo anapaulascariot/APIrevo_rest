@@ -1,56 +1,46 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf8mb4">  
-  <title>Gráficas de votos</title>  
-  <link rel="stylesheet" type="text/css" href="http://localhost/APIrevo_rest/assets/css/formato.css"></link>
-  <link rel="stylesheet" type="text/css" href="http://localhost/APIrevo_rest/assets/css/bootstrap.css"></link>
-  <link rel="stylesheet" type="text/css" href="http://localhost/APIrevo_rest/assets/css/bootstrap.min.css"></link>
-</head>  
-<body>
-    <div class="container">
-      <div class="wrapper fadeInDown">
-        <div class="fadeIn first">
-          <h1>Gráficas de Votos</h1>
-            <div class="text-center">
-              <div class="card bg-info text-white">
-                <div id="body">
-                  <!--..-->
-    		      <div>
-                <h1 id="textoRegistrados"></h1>
-                <canvas id="graficaRespuestas"></canvas>
-              </div>
-            </div>
-            <div class="col-md-1 col-md-offset-7">
-              <button type="button" type="button" class="btn btn-danger" onclick="window.location.href='<?php echo base_url("index.php/");?>'">Salir</button>
-            </div>
-            <!--.Boton que hara.-->
-            <div class="col-md-1 col-md-offset-7">
-              <button type="btn-success" class="btn btn-success" id="socket">votar</button>
-            </div>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="<?php echo $this->config->item('base_url')?>/assets/js/Chart.min.js"></script>
-<script src="<?php echo $this->config->item('base_url')?>/assets/js/graficas.js"></script>
-<script src="http://localhost:8082/socket.io/socket.io.js"></script>
-<script>
-  var socket = io.connect('http://localhost:8082');
-  var ctx = document.getElementById("graficaVotos").getContext('2d');
-    socket.on("exito", function(){
-        //codigo que se vera en elnavegador https://socket.io/docs/
-        alert("todo ok");
-       location.reload();
-        console.log('caca');
-        
-    });
-    window.addEventListener("load", function(){
-        
-        var button = document.getElementById("socket");
-        button.addEventListener("click", function(){
-            socket.emit("revoto");
-        });
-    });
-</script>
-</body>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+      <?php
+      //print_r($datos)?>
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['Calificación', 'Porcentaje'],
+          <?php 
+          foreach ($datos as $key) {
+            echo '["'.$key->pregunta.'", '.$key->voto."],";
+            echo " ";
+
+            
+          }
+          ?>]);
+
+        var options = {
+          title: 'Pregunta: <?php echo "¿Qué piensas de la maestría en Sistemas interactivos Centrados en el Usuario?"//$datos[0]->pregunta //La pregunta ?>',
+          width: 900,
+          legend: { position: 'none' },
+          chart: { title: 'Pregunta: <?php echo $datos[0]->pregunta//La pregunta otra vez ?>',
+                   subtitle: '' },
+          bars: 'horizontal', // Required for Material Bar Charts.
+          axes: {
+            x: {
+              0: { side: 'top', label: 'Porcentaje'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "90%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        chart.draw(data, options);
+      };
+    </script>
+  </head>
+  <body>
+    <div id="top_x_div" style="width: 900px; height: 500px;"></div>
+    <div class="col-md-1 col-md-offset-7">
+                                    <button type="button" type="button" class="btn btn-danger" onclick="window.location.href='<?php echo base_url();?>'">Salir</button>
+  </body>
 </html>
