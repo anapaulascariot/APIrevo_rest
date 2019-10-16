@@ -14,14 +14,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="container">
       <div class="wrapper fadeInDown">
         <div class="fadeIn first">
-          <h1>Votos</h1>
+          <h1>Gráficas de Votos</h1>
           <div id="body">
 		      <div>
 			<h1 id="textoRegistrados"></h1>
 			<canvas id="graficaVotos"></canvas>
 		</div>
 	</div>
- <button id="botngrita">votar</button>
+  <div class="col-md-1 col-md-offset-7">
+                <button type="button" type="button" class="btn btn-danger" onclick="window.location.href='<?php echo base_url("index.php/");?>'">Salir</button>
+                <p></p>
+              </div>
+<!-- <button id="botngrita">votar</button>-->
 </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="<?php echo $this->config->item('base_url')?>/assets/js/Chart.min.js"></script>
