@@ -9,12 +9,12 @@ class Graficas extends CI_Controller {
     }
     
 	public function index(){
-        $this->load->view('Modelo_graficas');
-		//*if($this->session->userdata('is_logged')){
-            /*$this->load->view('graficas');
+        //$this->load->view('graficas');
+		if($this->session->userdata('is_logged')){
+            $this->load->view('graficas');
         }else{
             show_404();
-        }*/
+        }
     }
 
 }
