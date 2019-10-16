@@ -14,6 +14,10 @@ class Login extends CI_Controller {
 		$email = $this->input->post('email');
 		$contrasena = $this->input->post('contrasena');
 
+		if (empty($email) or empty($contrasena)) {
+			echo json_encode("Informe email y contrasena.");
+			exit;	
+		}
 
 		$var = $this->Modelo_login->realizarLogin($email, $contrasena);
 		// this - el modelo que tengo - el método del modelo

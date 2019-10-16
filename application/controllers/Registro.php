@@ -25,26 +25,31 @@
 				'contrasena' => md5($contrasena)
 			); // nombre del campo de la base de datos y los datos que recibo por post, para despues enviar al registro en bd
 
-			//$existe = $this->Modelo_registro->checarExistencia($email);
+			if (empty($nombre) or empty($apellido) or empty($email) or empty($contrasena)) {
+				echo json_encode("Informe nombre, apellido, email y contrasena.");
+				exit;	
+			}
 
-			/*if($existe > 0) {
+			//validaciones API
+			$existe = $this->Modelo_registro->checarExistencia($email);
+
+			if($existe > 0) {
 				echo json_encode("Ya existe un usuario registrado con este email.");
-			} else {*/
+			} else {
 				
 				$registrado = $this->Modelo_registro->guardarUsuario($arreglo);
 				
-				/*
 				// this - el modelo que tengo - el método del modelo
 				if(!$registrado) {
+					//echo json_encode("Usuario registrado.");
 					$this->load->view('login');
 				} else {
 					echo json_encode("Tuvimos un problema al registrar usuario. Intentalo nuevamente, por favor.");
 				}
 			}
-			*/
 		}
 
-
+		//validaciones view
 		public function signin_validation()  
 		{  
 			$this->load->library('form_validation');  
@@ -62,7 +67,6 @@
 					'required'      => 'No proporcionaste una contraseña válida',
 					'min_length'      => 'La contraseña debe ser de mínimo 5 caracteres',
 					'max_length'      => 'La contraseña debe ser de máximo 12 caracteres'
-
 				)
 			);  
 
@@ -75,16 +79,11 @@
 				$this->index();  
 				echo "<script> alert('Registro realizado. Por favor, realize login para votar.'); </script>";
 				$this->load->view('login'); 
-
 			}   
 			else {  
 	           //echo "Error"; 
 	           // echo validation_errors();
 				$this->load->view('registro'); 
 			}  
-
 		}
-		// $id, $nombre, $apellido, $email, $contrasena
-
-
 	}
