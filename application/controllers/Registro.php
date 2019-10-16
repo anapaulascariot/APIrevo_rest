@@ -33,7 +33,7 @@ class Registro extends CI_Controller {
 			$registrado = $this->Modelo_registro->guardarUsuario($arreglo);
 			// this - el modelo que tengo - el método del modelo
 			if(!$registrado) {
-				$this->load->view('respuesta');
+				$this->load->view('login');
 			} else {
 				echo json_encode("Tuvimos un problema al registrar usuario. Intentalo nuevamente, por favor.");
 			}
@@ -42,12 +42,11 @@ class Registro extends CI_Controller {
 	}
 
 
-
-/*	public function signin_validation()  
+	public function signin_validation()  
     {  
         $this->load->library('form_validation');  
   
-        $this->form_validation->set_rules('username', 'Username', 'trim|xss_clean|is_unique[usuario.nombre]');  
+        $this->form_validation->set_rules('email', 'Email', 'trim|xss_clean|is_unique[usuario.email]');  
   
         $this->form_validation->set_rules('password', 'Password', 'required|trim');  
   
@@ -61,11 +60,10 @@ class Registro extends CI_Controller {
          }   
             else {  
               
-            $this->load->view('signin');  
+            $this->load->view('login');  
         }  
-    }*/
 
-
+    }
 	// $id, $nombre, $apellido, $email, $contrasena
 
 
