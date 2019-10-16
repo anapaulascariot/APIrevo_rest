@@ -25,12 +25,15 @@ class Registro extends CI_Controller {
 			'contrasena' => md5($contrasena)
 		); // nombre del campo de la base de datos y los datos que recibo por post, para despues enviar al registro en bd
 
-		$existe = $this->Modelo_registro->checarExistencia($email);
+		//$existe = $this->Modelo_registro->checarExistencia($email);
 
-		if($existe > 0) {
+		/*if($existe > 0) {
 			echo json_encode("Ya existe un usuario registrado con este email.");
-		} else {
+		} else {*/
+			
 			$registrado = $this->Modelo_registro->guardarUsuario($arreglo);
+			
+			/*
 			// this - el modelo que tengo - el método del modelo
 			if(!$registrado) {
 				$this->load->view('login');
@@ -39,6 +42,7 @@ class Registro extends CI_Controller {
 			}
 
 		}
+		*/
 	}
 
 
@@ -46,21 +50,42 @@ class Registro extends CI_Controller {
     {  
         $this->load->library('form_validation');  
   
-        $this->form_validation->set_rules('email', 'Email', 'trim|xss_clean|is_unique[usuario.email]');  
+        $this->form_validation->set_rules(
+        	'email', 'Email', 'required|is_unique[usuario.email]',
+        	array(
+                'required'      => 'No proporcionaste un correo válido',
+                'is_unique'     => 'Este %s ya existe'
+        	)
+        );  
+     
   
-        $this->form_validation->set_rules('password', 'Password', 'required|trim');  
+        $this->form_validation->set_rules('contrasena', 'contrasena', 'required|min_length[5]|max_length[12]',
+        	array(
+                'required'      => 'No proporcionaste una contraseña válida',
+                'min_length'      => 'La contraseña debe ser de mínimo 5 caracteres',
+                'max_length'      => 'La contraseña debe ser de máximo 12 caracteres'
+
+        	)
+        );  
   
-        $this->form_validation->set_rules('cpassword', 'Confirme su Password', 'required|trim|matches[password]');  
+        $this->form_validation->set_rules('confirmar_contrasena', 'Confirme su Password', 'required|matches[contrasena]');  
   
-        $this->form_validation->set_message('is_unique', 'El usuario ya existe');  
+      //  $this->form_validation->set_message('is_unique', 'El usuario ya existe');  
   
     if ($this->form_validation->run())  
         {  
-            echo "Bienvenido. Ha ingresado con éxito";  
+
+        	 $this->index();  
+            echo "registro con exito";
+            $this->load->view('login'); 
+            
+
          }   
             else {  
               
-            $this->load->view('login');  
+           //echo "Error"; 
+           // echo validation_errors();
+            $this->load->view('registro'); 
         }  
 
     }
