@@ -1,5 +1,18 @@
 <html>
   <head>
+    <head>  
+    <meta charset="utf8mb4">  
+    <title>Página Graficas</title>  
+    <link rel="stylesheet" type="text/css" href="http://localhost/APIrevo_Aly/assets/css/formato.css"></link>
+    <link rel="stylesheet" type="text/css" href="http://localhost/APIrevo_Aly/assets/css/bootstrap.css"></link>
+    <link rel="stylesheet" type="text/css" href="http://localhost/APIrevo_Aly/assets/css/bootstrap.min.css"></link>
+</head> 
+<body>
+  <div class="container">
+    <div class="wrapper fadeInDown">
+      <div class="fadeIn first">
+        <h1>Graficas</h1>
+      </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});

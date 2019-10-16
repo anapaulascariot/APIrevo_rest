@@ -3,36 +3,31 @@
 <head>  
     <meta charset="utf8mb4">  
     <title>Página Cuestionario</title>  
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="http://localhost/APIrevo_Aly/assets/css/formato.css"></link>
+    <link rel="stylesheet" type="text/css" href="http://localhost/APIrevo_Aly/assets/css/bootstrap.css"></link>
+    <link rel="stylesheet" type="text/css" href="http://localhost/APIrevo_Aly/assets/css/bootstrap.min.css"></link>
 </head>  
 <body> 
-    <div class="container">
+   <div class="container">
+     <div class="wrapper fadeInDown">
+       <div class="fadeIn first">
         <div class="text-center">
-            <div class="jumbotron">
-                <h1>¡Bienvenido!</h1>
-                <h2>Responde la siguiente pregunta</h2>
-            </div>
-            <div class="card bg-info text-white">
-                <div class="card-body">
-                    <div class="col-md-12 col-md-offset-7">
-                        <div class="panel panel-default">
-                            <div class="text-center">
-                                <form method="post" action="<?php echo base_url('index.php/Respuesta/votar/');?>">
-                                <div id="formContent">
-
-                                   <legend class="col-sm-12"><?php echo "¿Qué piensas de la maestría en Sistemas interactivos Centrados en el Usuario?"//$preguntayrespuesta[1];?></legend> 
-
-                                   <p></p>
+         <h1>¡Bienvenido!</h1>
+         <h2>Responde la siguiente pregunta</h2>
+       </div>
+       <div class="text-center">
+         <div class="card bg-info text-white">
+          <!--<legend class="col-sm-12">¿Cómo calificarías el clima en Xalapa Veracruz?</legend>   
+          <p></p>-->
+          <form method="post" action="<?php echo base_url('index.php/Respuesta/votar/');?>">
+              <legend class="col-sm-12"><?php echo "¿Qué piensas de la maestría en Sistemas interactivos Centrados en el Usuario?"//$preguntayrespuesta[1];?></legend>
+              <p></p>
                                 <?php 
                                 //print_r($preguntayrespuesta);
                                  //En este tramo van las respuestas
                                 // $mas2=0;
                                 
-                                      
+                                     
                                   echo "<div class='form-check'>";
                                   echo "<input class='form-check-input' type='radio'";
                                   //se especifica que radiobutton es
